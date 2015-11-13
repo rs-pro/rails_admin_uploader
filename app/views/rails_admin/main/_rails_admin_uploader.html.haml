@@ -1,0 +1,20 @@
+- url = rails_admin_uploader.attachments_path
+- form.object.ra_set_token!
+.fileupload-block{'data-field' => field.method_name, 'data-klass': form.object.class.name, 'data-id': form.object.id, 'data-url': url, 'data-flags': form.object.class.ra_flags(field.method_name).to_json}
+  = form.hidden_field 'ra_token', value: form.object.ra_token
+
+  %table.files.table.table-striped
+    %tr
+      %td= t('rails_admin_uploader.wait')
+
+  .row
+    .col-md-4
+      %span.btn.btn-success.fileinput-button
+        %i.fa.fa-plus
+        %span= t('rails_admin_uploader.add')
+        %input.fileupload{multiple: "multiple", name: "files[]", type: "file"}/
+      %br/
+      %br/
+    .col-md-8
+      .progress
+        .progress-bar.progress-bar-success

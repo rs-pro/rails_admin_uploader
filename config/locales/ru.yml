@@ -1,0 +1,5 @@
+ru:
+  rails_admin_uploader:
+    add: Добавить файл
+    wait: Загрузка списка файлов...
+
