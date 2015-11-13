@@ -3,25 +3,25 @@ module RailsAdminUploader
     extend ActiveSupport::Concern
 
     included do
-      before_validation :ra_set_token!
-      after_save :ra_build_links!
+      after_create :ra_build_links!
     end
 
     def ra_set_token!
       self.ra_token = RailsAdminUploader.guid if ra_token.blank?
-      true
     end
 
     def ra_build_links!
-      ra_columns.each do |column|
+      return if ra_token.blank?
+      self.class.ra_columns.each do |column|
         ref = self.class.ra_get_reflection(column)
         fk = ref.foreign_key
-        ref.where(ra_token: ra_token).each do |obj|
+        ref.klass.where(ra_token: ra_token).each do |obj|
           obj.send("#{fk}=", id)
           obj.ra_token = nil
           obj.save!
         end
       end
+      update_column('ra_token', nil)
     end
 
     module ClassMethods
@@ -32,11 +32,11 @@ module RailsAdminUploader
       end
 
       def ra_get_reflection(column)
-        self.reflections[column.to_s].klass
+        self.reflections[column.to_s]
       end
 
       def ra_flags(column)
-        ref = ra_get_reflection(column)
+        ref = ra_get_reflection(column).klass
         obj = ref.new
         {
           nameable: obj.respond_to?(:name),

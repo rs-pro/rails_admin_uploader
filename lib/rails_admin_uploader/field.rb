@@ -3,6 +3,9 @@ module RailsAdminUploader
     register_instance_option :partial do
       :rails_admin_uploader
     end
+    register_instance_option :allowed_methods do
+      [:ra_token]
+    end
   end
 end
 

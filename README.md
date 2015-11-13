@@ -35,7 +35,6 @@ Add this line to ```app/assets/stylesheets/rails_admin/custom/theming.sass```
 
 Create this file if it doesn't exist in your project.
 
-
 ## Usage
 
 Configure your models:
@@ -62,6 +61,8 @@ Configure your models:
     # add an integer field :sort to DB (optional)
     # add a boolean field :enabled to DB (optional)
   end
+
+Set up CanCan (required)
 
 ## Contributing
 

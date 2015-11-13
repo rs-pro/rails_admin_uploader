@@ -7,14 +7,10 @@
     %tr
       %td= t('rails_admin_uploader.wait')
 
-  .row
-    .col-md-4
-      %span.btn.btn-success.fileinput-button
-        %i.fa.fa-plus
-        %span= t('rails_admin_uploader.add')
-        %input.fileupload{multiple: "multiple", name: "files[]", type: "file"}/
-      %br/
-      %br/
-    .col-md-8
-      .progress
-        .progress-bar.progress-bar-success
+  %span.btn.btn-success.fileinput-button
+    %i.fa.fa-plus
+    %span= t('rails_admin_uploader.add')
+    %input.fileupload{multiple: "multiple", name: "files[]", type: "file"}/
+  %span.label.label-default= t('rails_admin_uploader.drag')
+  %span.label.label-default= t('rails_admin_uploader.autosave')
+  %br/

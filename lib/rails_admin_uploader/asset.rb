@@ -11,7 +11,8 @@ module RailsAdminUploader
         thumb_url: image.url(:thumb),
         ra_token: ra_token,
         name: respond_to?(:name) ? name : nil,
-        sort: respond_to?(:sort) ? sort : nil
+        sort: respond_to?(:sort) ? sort : nil,
+        enabled: respond_to?(:enabled) ? enabled : nil
       }
     end
   end
