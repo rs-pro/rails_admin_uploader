@@ -3,6 +3,7 @@ module RailsAdminUploader
     extend ActiveSupport::Concern
 
     included do
+      cattr_accessor :ra_columns
       after_create :ra_build_links!
     end
 
@@ -25,8 +26,6 @@ module RailsAdminUploader
     end
 
     module ClassMethods
-      cattr_accessor :ra_columns
-
       def rails_admin_uploader(*columns)
         self.ra_columns = columns
       end
@@ -47,4 +46,3 @@ module RailsAdminUploader
     end
   end
 end
-
